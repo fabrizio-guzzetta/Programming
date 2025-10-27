@@ -1,0 +1,22 @@
+{% extends "base_sidebar.html" %}
+
+{% block title%} Crea Corso {{username_admin}}{% endblock %}
+
+{% block sidebar %}
+
+{% block content%}
+<main>
+    <form action="/createcourse" method="POST">
+        <label for="corso"> Nome del corso nuovo: </label> 
+            <input type="text" class="form-control d-none" placeholder="Nome del corso nuovo" aria-label="Nome del corso nuovo">
+        <label for="categoria"> Categoria del corso: </label> 
+            <input type="text" class="form-control d-none" placeholder="Categoria" aria-label="Categoria">
+        <label for="number_participants"> Numero partecipanti: </label> 
+            <input type="text" class="form-control d-none" placeholder="Partecipanti" aria-label="Partecipanti">
+        <label for="descrizione"> Descrizione: </label>
+            <input type="text" class="form-control" placeholder="ID corso nuovo" aria-label="ID corso nuovo" aria-describedby="button-addon2">
+        <button class="btn btn-outline-secondary bg-info text-warning"  id="button-addon2">Invia</button>
+        <button type="reset" class="btn btn-outline-secondary bg-info text-warning"  id="button-addon2">Cancella</button>
+    </form>
+</main>
+{% endblock %}

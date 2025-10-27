@@ -60,11 +60,18 @@ def dashboard(username):
 
 @app.route("/createcourse", methods=["POST"])
 def create(username):
-        
     cursor = connect.cursor(dictionary=True)
-    cursor.execute("""INSERT INTO courses_db(corso, categoria, number_participants, descrizione)VALUES(%s, %s, %s, %s)""", [request.form['corso'], request.form['categoria'], request.form['number_participants'], request.form['descrizione']])
+    cursor.execute("SELECT * FROM courses_db")
+    courses = cursor.fetchall()
+    cursor.close()
+    for course in courses:
+        if not courses[0]['corso']:   
+            cursor = connect.cursor(dictionary=True)
+            cursor.execute("""INSERT INTO courses_db(corso, categoria, number_participants, descrizione)VALUES(%s, %s, %s, %s)""", [request.form['corso'], request.form['categoria'], request.form['number_participants'], request.form['descrizione']])
+            return render_template("corsi_utente.html")
+        else:
+            return redirect("/createcourse", message= "Corso già esistente")
     connect.commit()
-
     cursor.close()
     return render_template("crea_corsi.html")
 
