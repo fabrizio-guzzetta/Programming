@@ -1,0 +1,24 @@
+{% extends "base_sidebar.html" %}
+{%block content%} 
+<main class="bg-info-subtle">
+    <div class="row align-items-center">
+        <section class="formRow mb-3 d-flex justify-content-center align content-center p-0 mt-0">
+                <label for="genere">Corso richiesto: </label>
+                <select name="Elenco corsi" id="corso">
+                    <option value="">Seleziona il corso ufficiale</option>
+                    {%for course in courses%}
+                    {% if course['categoria'].upper() == 'FED'%}
+                    <option value="{{course['id']}}">{{course['corso']}} </option>
+                    {% endif %}
+                    {% if course['categoria'].upper() == 'BED'%}
+                    <option value="{{course['id']}}">{{course['corso']}} </option>
+                    {% endif %}
+                    {% if course['categoria'].upper() == 'OTHER'%}
+                    <option value="{{course['id']}}">{{course['corso']}} </option>
+                    {% endif %}
+                    {% endfor %}
+                </select>   
+        </section>
+    </div>
+</main>
+{% endblock %}

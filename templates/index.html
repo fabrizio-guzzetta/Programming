@@ -1,0 +1,246 @@
+{% extends "base.html" %}
+
+{%block content%}
+<!--CAROSELLO-->
+    <section id="carouselExampleExplanation" class="carousel slide">
+      <div id="carouselExampleCaptions" class="carousel slide">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+            aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+            aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+            aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="static/assets/media/carousel3.jpg" class="d-block w-100" alt="immagine3" />
+          </div>
+          <div class="carousel-item">
+            <img src="static/assets/media/carousel2.jpg" class="d-block w-100" alt="immagine1" />
+          </div>
+          <div class="carousel-item">
+            <img src="static/assets/media/carousel2.jpg" class="d-block w-100" alt="immagine2" />
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+          data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+          data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </section>
+    <!-- MEDIA TEXT -->
+    <section class="container-fluid py-2 fs-5 bg-info-subtle">
+      <section class="container">
+        <div class="row py-5 align-items-center">
+          <div class="col fs-5">
+            <h1>Full Stack Dev</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. A aut explicabo possimus tempora labore delectus
+              dignissimos placeat blanditiis consectetur quas rem laudantium voluptas harum quod qui facilis minima,
+              dolore voluptate.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet perferendis ipsam aliquam repudiandae sed
+              molestias aspernatur, cupiditate laudantium ipsa labore modi necessitatibus quam repellendus consequuntur
+              praesentium id minus! Vel, accusamus?</p>
+            <button type="button" class="btn btn-info btn-lg px-5 rounded-pill border-1 border-info-subtle"><a href="/register" class="text-decoration-none text-warning">Iscriviti subito!</a></button>
+          </div>
+          <div class="col d-none d-lg-inline-block">
+            <img src="static/assets/media/programmer.jpg" alt="programmatore" class="w-100 rounded-3">
+          </div>
+        </div>
+      </section>
+    </section>
+    <!--CARDS-->
+    <section class="container py-5">
+      <div class="row text-center gy-5 row-cols-1 row-cols-md-3">
+        <div class="col">
+          <div class="card w-100" style="width: 18rem;">
+            <i class="bi bi-alarm fs-2 bg-info-subtle"></i>
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s
+                content.</p>
+              <a href="#" class="btn btn-info text-warning">Go somewhere</a>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card w-100" style="width: 18rem;">
+            <i class="bi bi-laptop fs-2 bg-info-subtle"></i>
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s
+                content.</p>
+              <a href="#" class="btn btn-info text-warning">Go somewhere</a>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card w-100" style="width: 18rem;">
+            <i class="bi bi-trophy fs-2 bg-info-subtle"></i>
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s
+                content.</p>
+              <a href="#" class="btn btn-info text-warning">Go somewhere</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="container-fluid py-2 fs-5">
+      <section class="container">
+        <div class="row py-5 align-items-center  flex-md-row">
+          <div class="col-md-6 fs-5">
+            <h1>Front-End Dev</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. A aut explicabo possimus tempora labore delectus
+              dignissimos placeat blanditiis consectetur quas rem laudantium voluptas harum quod qui facilis minima,
+              dolore voluptate.</p>
+            <ul>
+              <li><a href="https://www.w3schools.com/html/default.asp"><img src="static/assets/media/Logos_linguaggi_programmazione/html-5-svgrepo-com.svg" alt="HTML"
+                  style="width: 15%; height: auto;"></a></li>
+              <li><a href="https://www.w3schools.com/css/default.asp"><img src="static/assets/media/Logos_linguaggi_programmazione/css-svgrepo-com.svg" alt="CSS"
+                  style="width: 15%; height: auto;"></a><a href="https://tailwindcss.com/"><img src="static/assets/media/Logos_linguaggi_programmazione/tailwind-css-logo.png" alt="Tailwind-CSS"
+                  style="width: 15%; height: auto;"><a href="https://getbootstrap.com/"><img
+                  src="static/assets/media/Logos_linguaggi_programmazione/bootstrap-fill-svgrepo-com.svg" alt="Bootstrap"
+                  style="width: 15%; height: auto;"></a></li>
+              <li><a href="https://nodejs.org/en"> <img src="static/assets/media/Logos_linguaggi_programmazione/node-js-svgrepo-com.svg" alt="JS e NODE"
+                  style="width: 15%; height: auto;"></a><a href="https://it.legacy.reactjs.org/"><img
+                  src="static/assets/media/Logos_linguaggi_programmazione/react-svgrepo-com.svg" alt="React"
+                  style="width: 15%; height: auto;"></a><a href="https://angular.dev/"><img
+                  src="static/assets/media/Logos_linguaggi_programmazione/angular-svgrepo-com.svg" alt="Angular"
+                  style="width: 15%; height: auto;"></a><a href="https://getbootstrap.com/"><img
+                  src="static/assets/media/Logos_linguaggi_programmazione/bootstrap-fill-svgrepo-com.svg" alt="Bootstrap"
+                  style="width: 15%; height: auto;"></a></li>
+            </ul>
+            <button class="btn btn-info text-warning btn-lg px-5 rounded-pill border-1 border-white"><a href="/corsi"class="text-decoration-none text-warning">Entra nel magico mondo della programmazione Front-End</a></button>
+          </div>
+          <div class="col-md-6 d-lg-inline-block">
+            <img src="static/assets/media/front-end.jpg" alt="programmatore" class="w-100 rounded-3">
+          </div>
+        </div>
+      </section>
+      <section class="container">
+        <div class="row py-5 align-items-center flex-md-row-reverse">
+          <div class="col-md-6 fs-5">
+            <h1>Back-End Dev</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. A aut explicabo possimus tempora labore delectus
+              dignissimos placeat blanditiis consectetur quas rem laudantium voluptas harum quod qui facilis minima,
+              dolore voluptate.
+            <ul>
+              <li><a href="https://www.php.net/"><img src="static/assets/media/Logos_linguaggi_programmazione/php-logo-svgrepo-com.svg" alt="PHP"
+                  style="width: 15%; height: auto;"></a><a href="https://laravel.com/"><img src="static/assets/media/Logos_linguaggi_programmazione/laravel.png" style="width: 15%; height: auto;"></a></li>
+              <li><a href="https://www.python.org/"><img src="static/assets/media/Logos_linguaggi_programmazione/python-svgrepo-com.svg" alt="Python"
+                  style="width: 15%; height: auto;"></a><a href="https://flask.palletsprojects.com/en/stable/"><img src="static/assets/media/Logos_linguaggi_programmazione/flask.svg" alt="Flask"
+                  style="width: 30%; height: auto;"></a><a href="https://www.djangoproject.com/"><img src="static/assets/media/Logos_linguaggi_programmazione/django-icon-svgrepo-com.svg" alt="Django-Python"
+                  style="width: 15%; height: auto;"></a></li>
+              <li><a href="https://www.java.com/it/"><img src="static/assets/media/Logos_linguaggi_programmazione/java-svgrepo-com.svg" alt="Java"
+                  style="width: 15%; height: auto;"></a></li>
+              <li><a href="https://www.mysql.com/it/"><img src="static/assets/media/Logos_linguaggi_programmazione/mysql-logo-svgrepo-com.svg" alt="MySQL"
+                  style="width: 15%; height: auto;"></a></li>
+            </ul>
+            <button class="btn btn-info btn-lg px-5 rounded-pill border-1 border-white"><a href="/corsi"class="text-decoration-none text-warning">Entra nell'entusiasmante mondo della programmazione Back-End</a></button>
+          </div>
+          <div class="col-md-6 d-lg-inline-block">
+            <img src="static/assets/media/back-end.jpg" alt="programmatore" class="w-100 rounded-3">
+          </div>
+        </div>
+      </section>
+    </section>
+    <!--CARD Insegnanti-->
+    <section class="container py-5 align-items-center">
+      <h2 class="text-center mb-5">I nostri insegnanti</h2>
+      <div class="row text-center gy-5 row-cols-1 row-cols-lg-4 row-cols-sm-2">
+        <div class="col">
+          <div class="card w-100 h-100 pt-3" style="width: 18rem;">
+            <a href="mailto:francesco.dionisi@example.com"><img src="static/assets/media/instructor1.jpg" alt="Francesco Dionisi" class="rounded-circle mx-auto p-2"></a>
+            <div class="card-body text-center d-flex flex-column">
+              <h5 class="card-title h3 fs-5">Francesco Dionisi</h5>
+              <p class="card-text justify-content-evenly p-3 fs-6">Sviluppatore poliglotta con competenze
+                equilibrate in PHP (Laravel/CodeIgniter), Python (Django/Flask), e Java (Spring ecosystem). Esperto
+                MySQL per tutti i tipi di applicazioni. Esperienza in microservizi, containerization e deployment
+                automation. Focus su best practices cross-platform.</p>
+              <div class="mt-auto">
+                <a href="#" class="btn btn-info text-warning"><i class="bi bi-linkedin"></i></a>
+                <a href="#" class="btn btn-info text-warning"><i class="bi bi-github"></i></a>
+                <a href="#" class="btn btn-info text-warning"><i class="bi bi-twitter-x"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card w-100 h-100 pt-3" style="width: 18rem;">
+            <a href="mailto:stefano.depace@example.com"><img src="static/assets/media/instructor2.jpg" alt="Stefano de Pace Pallino" class="rounded-circle m-auto p-2"></a>
+            <div class="card-body text-center d-flex flex-column">
+              <h5 class="card-title h3 fs-5">Stefano De Pace</h5>
+              <p class="card-text justify-content-evenly p-3 fs-6">Developer specializzato in Python con expertise
+                in Django/Flask per web development e FastAPI per microservizi. Solide competenze in MySQL per data
+                modeling e performance tuning. Esperienza in PHP per progetti legacy e Java per applicazioni
+                scalabili. Background in data analysis e machine learning con Python.</p>
+              <div class="mt-auto">
+                <a href="#" class="btn btn-info text-warning"><i class="bi bi-linkedin"></i></a>
+                <a href="#" class="btn btn-info text-warning"><i class="bi bi-github"></i></a>
+                <a href="#" class="btn btn-info text-warning"><i class="bi bi-twitter-x"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card w-100 h-100 pt-3" style="width: 18rem;">
+            <a href="mailto:fulvia.grignaschi@example.com"><img src="static/assets/media/instructor3.jpg" alt="Fulvia Grignaschi" class="rounded-circle m-auto p-2"></a>
+            <div class="card-body text-center d-flex flex-column">
+              <h5 class="card-title h3 fs-5">Fulvia Grignaschi</h5>
+              <p class="card-text justify-content-evenly p-3 fs-6">Esperienza al lavoro in HTML5, CSS3 e JavaScript
+                moderno (ES6+). Esperta in React e Angular per applicazioni SPA complesse. Competenze in responsive
+                design, performance optimization e testing automatizzato. Familiarità con Node.js per tooling e API
+                integration.</p>
+              <div class="mt-auto">
+                <a href="#" class="btn btn-info text-warning"><i class="bi bi-linkedin"></i></a>
+                <a href="#" class="btn btn-info text-warning"><i class="bi bi-github"></i></a>
+                <a href="#" class="btn btn-info text-warning"><i class="bi bi-twitter-x"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card w-100 h-100 pt-3" style="width: 18rem;">
+            <a href="mailto:rubina.beneduce@example.com"><img src="static/assets/media/instructor4.jpg" alt="Rubina" class="rounded-circle m-auto p-2"></a>
+            <div class="card-body text-center d-flex flex-column">
+              <h5 class="card-title h3 fs-5">Rubina Beneduce</h5>
+              <p class="card-text justify-content-evenly p-3 fs-6">Sviluppatrice backend con esperienza consolidata
+                in PHP (7.4+) e framework moderni come Laravel e Symfony. Competenze avanzate in MySQL per database
+                design e query optimization. Esperienza in API REST/GraphQL, microservizi e integrazione con servizi
+                cloud. Familiarità con Python per scripting e automazione, Java per progetti enterprise.</p>
+              <div class="mt-auto">
+                <a href="#" class="btn btn-info text-warning"><i class="bi bi-linkedin text-info-subtle"></i></a>
+                <a href="#" class="btn btn-info text-warning"><i class="bi bi-github text-info-subtle"></i></a>
+                <a href="#" class="btn btn-info text-warning"><i class="bi bi-twitter-x"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="container-fluid bg-info-subtle mb-5 align-items-center">
+      <div class="container text-center fs-3 fw-bold py-5">
+        <span>
+          Iscriviti alla nostra newsletter
+        </span>
+        <span class="d-none d-lg-inline">
+          per ricevere tutti gli aggiornamenti
+        </span>
+        <form action="/admin/newsletter" method="POST">
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Scrivi la tua em@il" aria-label="Scrivi la tua em@il" aria-describedby="button-addon2">
+            <input type="text" class="form-control d-none" placeholder="Hidden input" aria-label="Hidden input">
+            <button class="btn btn-outline-secondary bg-info text-warning"  id="button-addon2">Iscriviti</button>
+          </div>
+        </form>
+      </div>
+    </section>
+   {% endblock %}   

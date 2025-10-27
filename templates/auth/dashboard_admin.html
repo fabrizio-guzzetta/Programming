@@ -1,0 +1,106 @@
+{% extends "base_sidebar.html" %}
+
+{% block title%} Dashboard_admin {{username_admin}}{% endblock %}
+
+{% block sidebar %}
+
+<div class="sidebar" id="sidebar_admin" aria-hidden="true">
+  <button class="toggle-btn btn btn-info text-warning" 
+          id="toggleSidebarBtn_admin"
+          onclick="toggleSidebar('admin')" 
+          aria-controls="sidebar_admin" aria-expanded="false">
+    <i class="bi bi-chevron-double-right"></i> 
+  </button>
+
+  <h2>Area Admin</h2>
+  <a href="/"><i class="bi bi-house"> Home </i></a>
+  <a href="/pagina_corsi"><i class="bi bi-briefcase-fill"> Gestione corsi </i></a>
+  <a href="#"> <i class="bi bi-bar-chart-steps"> Gestione studenti </i></a> 
+  <a href="/createcourse"><i class="bi bi-database-add"> Aggiungi Corso </i></a>
+  <a href="/deletecourse"><i class="bi bi-database-fill-dash">Elimina corso </i></a>
+  <a href="#"><i class="bi bi-cloud-download-fill"> Scarica lavori studenti </i></a>
+  <a href="#"><i class="bi bi-file-earmark-plus-fill"> Aggiungi valutazioni </i></a>
+  <a href="#"><i class="bi bi-gear-wide-connected"> Modifica valutazioni </i></a>
+  <a href="#"> <i class="bi bi-file-bar-graph-fill"> Visualizza barre progresso per studente o per corso </i></a>
+  <a href="#"><i class="bi bi-megaphone-fill"> Annunci </i></a>
+  <a href="#"><i class="bi bi-chat-square-quote-fill"> Chat </i></a>
+  <a href="#"><i class="bi bi-cloud-upload"> Upload materiale didattico </i></a>
+  <a href="#"><i class="bi bi-person-bounding-box"> Profilo </i></a>
+  <a href="/"><i class="bi bi-box-arrow-in-right fs-4"></i> Logout</a>
+
+<!--<div class="m-3">
+    Qui si devono mettere dinamicamente le barre di avanzamento del corso in base ai login (per. esempio se il corso è 180 gg, si deve loggare per 180 gg max e il corso è valido fino a un 20% di assenze) e la barra di avanzamento per valutazioni
+</div>-->
+</div>
+
+<script>
+function toggleSidebar(type) {
+    const sidebar = document.getElementById('sidebar_' + type);
+    const btn = document.getElementById('toggleSidebarBtn_' + type);
+    const btnIcon = btn.querySelector('i');
+    
+    sidebar.classList.toggle('open');
+    
+    
+    if (sidebar.classList.contains('open')) {
+        btnIcon.className = 'bi bi-chevron-double-left'; 
+        btn.setAttribute('aria-expanded', 'true');
+        sidebar.setAttribute('aria-hidden', 'false');
+    } else {
+        btnIcon.className = 'bi bi-chevron-double-right'; 
+        btn.setAttribute('aria-expanded', 'false');
+        sidebar.setAttribute('aria-hidden', 'true');
+    }
+}
+</script>
+
+{% endblock %}
+
+{%block content%}
+<main>
+    <div class="d-flex-lg-row justify-content-center">
+        <div class="p-5 me-3" 
+            style="background-image: url('/static/assets/media/class.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;">
+            <div class="text-start text-light bg-light bg-opacity-50 p-4 rounded-3">
+            <div class="d-flex flex-row align-items-baseline justify-content-start">
+            <h1 class="fw-bold mt-3 text-info-emphasis me-2">Benvenuto,<h1 class="text-info"> {{username_admin}} </h1></h1><h1 class="fw-bold mt-3 text-info-emphasis me-2">!</h1>
+        </div>
+        <h2 class="text-info-emphasis mt-3">Questa è la tua dashboard.</h2>
+    </div>
+        </div>     
+        <div class=" d-flex-lg-row justify-item-center align-text-center p-5 me-3 text-info">
+    
+            <p class="text-primary justify-content-center"> <p>Questa è la tua dashboard. Qui puoi vedere i progressi degli studenti attraverso le barre di progresso (relative ai voti in %) e il progresso del corso in relazione al tempo (ogni volta che fai una lezione (in quanto loggato) la barra si aggiorna) </p>
+            
+            <p>Nella sidebar puoi creare o eliminare corsi esistenti, aggiungere valutazioni degli studenti e automaticamente dare la nota finale </p>
+            
+            <p> Hai anche una pagina dove prendere appunti, note, progetti e messaggi </p>
+            </p>
+    </div>
+    <div>
+        <section class="formRow mb-3 d-flex justify-content-center align content-center p-0 mt-0">
+                <label for="genere">VisualizzazioneCorso richiesto: </label>
+                <select name="Elenco corsi" id="corso">
+                    <option value="">Seleziona il corso da visualizzare</option>
+                    {%for course in courses%}
+                    {% if course['categoria'].upper() == 'FED'%}
+                    <option value="{{course['id']}}">{{course['corso']}} </option>
+                    {% endif %}
+                    {% if course['categoria'].upper() == 'BED'%}
+                    <option value="{{course['id']}}">{{course['corso']}} </option>
+                    {% endif %}
+                    {% if course['categoria'].upper() == 'OTHER'%}
+                    <option value="{{course['id']}}">{{course['corso']}} </option>
+                    {% endif %}
+                    {% endfor %}
+                </select>   
+        </section>
+    </div>
+</main>
+<form action = "#" method = "post" class="d-flex justify-content-center mt-5"> 
+    <div class="text-info fs-6"> <p>Il tuo nome è {{username}}, il tuo cognome è {{cognome}}. Le tue credenziali di login sono {{email}} e {{password}} </p></div>
+</form>
+{% endblock %}

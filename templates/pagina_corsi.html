@@ -1,0 +1,238 @@
+{% extends "base.html" %}
+{% block content %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+
+  table.table tbody tr:hover {
+    background-color: var(--bs-info-bg-subtle);
+    cursor: pointer;
+  }
+
+  .accordion-item {
+    border: 1px solid var(--bs-info-border-subtle);
+    border-radius: .5rem;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0,0,0,.05);
+  }
+
+  .accordion-item + .accordion-item {
+    margin-top: 1rem;
+  }
+</style>
+
+<main class="container my-4">
+
+  <div class="accordion" id="coursesAccordion">
+
+    <!-- FED -->
+    <div class="accordion-item bg-info-subtle">
+      <h2 class="accordion-header" id="headingFED">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+          data-bs-target="#collapseFED" aria-expanded="true" aria-controls="collapseFED">
+          Corsi FED
+        </button>
+      </h2>
+      <div id="collapseFED" class="accordion-collapse collapse show"
+        aria-labelledby="headingFED" data-bs-parent="#coursesAccordion">
+        <div class="accordion-body p-0">
+
+          <!-- TABELLINA dentro accordion -->
+          <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0 text-start">
+              <thead class="table-light text-uppercase small">
+                <tr>
+                  <th scope="col">id</th>
+                  <th scope="col">corso</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!--Cerca nella lista dei corsi del db-->
+                {% for course in courses %}
+                <!-- Qui dividiamo per categorie-->
+                {% if course['categoria'] == 'FED' %}
+                <tr class="border-bottom">
+                  <th scope="row" class="fw-medium text-dark text-nowrap">
+                    {{ course['id'] }}
+                  <!--Qui cerchiamo attraverso l'id del corso e aggiungiamo l'icona corrispondente-->
+                  {% if course['id'] == 1 %}
+                  <img src="static/assets/media/Logos_linguaggi_programmazione/html-5-svgrepo-com.svg" style="max-width:56px;height:auto;">
+                  {% endif %}
+                  
+                  {% if course['id'] == 2 %}
+                  <img src="static/assets/media/Logos_linguaggi_programmazione/css-svgrepo-com.svg"
+                  alt="CSS3" class="d-inline-flex" style="max-width:56px;height:auto;">
+                  
+                  <img src="static/assets/media/Logos_linguaggi_programmazione/tailwind-css-logo.png"
+                  alt="Tailwind CSS" class="d-inline-flex" style="max-width:56px;height:auto;">
+                  
+                  <img src="static/assets/media/Logos_linguaggi_programmazione/bootstrap-fill-svgrepo-com.svg"
+                  alt="Bootstrap" class="d-inline-flex" style="max-width:56px;height:auto;">
+                  {% endif %}
+
+                  {% if course['id'] == 3 %}
+                  
+                  <img src="static/assets/media/Logos_linguaggi_programmazione/node-js-svgrepo-com.svg"
+                  alt="Node.js" class="d-inline-flex" style="max-width:56px;height:auto;">
+                  
+                  <img src="static/assets/media/Logos_linguaggi_programmazione/react-svgrepo-com.svg"
+                  alt="React" class="d-inline-flex" style="max-width:56px;height:auto;">
+                  
+                  <img src="static/assets/media/Logos_linguaggi_programmazione/angular-svgrepo-com.svg"
+                  alt="Angular" class="d-inline-flex" style="max-width:56px;height:auto;">
+                  
+                  <img src="static/assets/media/Logos_linguaggi_programmazione/bootstrap-fill-svgrepo-com.svg"
+                  alt="Bootstrap" class="d-inline-flex" style="max-width:56px;height:auto;">
+                  {% endif %}
+                  </th>
+                  <td class="text-body">
+                    {{ course['corso'] }}
+                  </td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- BED -->
+    <div class="accordion-item bg-info-subtle">
+      <h2 class="accordion-header" id="headingBED">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+          data-bs-target="#collapseBED" aria-expanded="false" aria-controls="collapseBED">
+          Corsi BED
+        </button>
+      </h2>
+      <div id="collapseBED" class="accordion-collapse collapse"
+        aria-labelledby="headingBED" data-bs-parent="#coursesAccordion">
+        <div class="accordion-body p-0">
+
+          <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0 text-start">
+              <thead class="table-light text-uppercase small">
+                <tr>
+                  <th scope="col">id</th>
+                  <th scope="col">corso</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for course in courses %} 
+                {%if course['categoria'] == 'BED' %}
+                <tr class="border-bottom">
+                  <th scope="row" class="fw-medium text-dark text-nowrap">
+                    {{ course['id'] }}
+                  
+                  {% if course['id'] == 4 %}
+                  
+                  <img src="static/assets/media/Logos_linguaggi_programmazione/php-logo-svgrepo-com.svg"
+                  alt="PHP" class="d-inline-flex" style="max-width:56px;height:auto;">
+                  
+                  <img src="static/assets/media/Logos_linguaggi_programmazione/laravel.png"
+                  alt="Laravel" class="d-inline-flex" style="max-width:56px;height:auto;">
+                  {% endif %}
+                  
+                  {% if course['id'] == 5 %}
+                  <img src="static/assets/media/Logos_linguaggi_programmazione/python-svgrepo-com.svg"
+                  alt="Python" style="max-width:56px;height:auto;">
+                  
+                  <img src="static/assets/media/Logos_linguaggi_programmazione/flask.svg"
+                  alt="Flask" style="max-width:56px;height:auto;">
+                  
+                  <img src="static/assets/media/Logos_linguaggi_programmazione/django-icon-svgrepo-com.svg"
+                  alt="Django" style="max-width:56px;height:auto;">
+                  {% endif %}
+                  
+                  {% if course['id'] == 6 %}
+                  <img src="static/assets/media/Logos_linguaggi_programmazione/java-svgrepo-com.svg"
+                  alt="Java" style="max-width:56px;height:auto;">
+                  {% endif %}
+
+                  {% if course['id'] == 7 %}
+                  <img src="static/assets/media/Logos_linguaggi_programmazione/mysql-logo-svgrepo-com.svg"
+                  alt="MySQL" style="max-width:56px;height:auto;">
+                  {% endif %}
+                  </th>
+                  <td class="text-body">
+                    {{ course['corso'] }}
+                  </th>
+                </tr>
+                {% endif %}
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ALTRI -->
+    <div class="accordion-item bg-info-subtle">
+      <h2 class="accordion-header" id="headingOther">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+          data-bs-target="#collapseOther" aria-expanded="false" aria-controls="collapseOther">
+          Altri Corsi
+        </button>
+      </h2>
+      <div id="collapseOther" class="accordion-collapse collapse"
+        aria-labelledby="headingOther" data-bs-parent="#coursesAccordion">
+        <div class="accordion-body p-0">
+
+          <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0 text-start">
+              <thead class="table-light text-uppercase small">
+                <tr>
+                  <th scope="col">id</th>
+                  <th scope="col">corso</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for course in courses%} 
+                {% if course['categoria'] == 'OTHER' %}
+                <tr class="border-bottom">
+                  <th scope="row" class="fw-medium text-dark text-nowrap">
+                    {{ course['id'] }}
+                    
+                    {% if course['id'] == 8 %}
+                    <img src="static/assets/media/Logos_linguaggi_programmazione/linux-tux-svgrepo-com.svg"
+                    alt="Linux" class="d-inline-flex" style="max-width:56px;height:auto;">
+                    {% endif %}
+                  
+                    {% if course['id'] == 9 %}
+                    <img src="static/assets/media/Logos_linguaggi_programmazione/bash-icon-svgrepo-com.svg"
+                    alt="Bash" class="d-inline-flex" style="max-width:56px;height:auto;">
+                    {% endif %}
+                  
+                    {% if course['id'] == 10 %}
+                    <img src="static/assets/media/Logos_linguaggi_programmazione/cybersecurity-two-tone-svgrepo-com.svg"
+                    alt="Cybersecurity" class="d-inline-flex" style="max-width:56px;height:auto;">
+                    {% endif %}
+                  
+                    {% if course['id'] == 11 %}
+                    <img src="static/assets/media/Logos_linguaggi_programmazione/kalilinux-svgrepo-com.svg"
+                    alt="Java" class="d-inline-flex" style="max-width:56px;height:auto;">
+                    {% endif %}
+                  </th>
+                  <td class="text-body">
+                    {{ course['corso'] }}
+                  </td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+{% endblock %}

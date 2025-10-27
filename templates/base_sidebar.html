@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sito portfolio</title>
+  <link rel="icon" type="image/x-icon" href="/static/assets/media/programming-svgrepo-com.svg">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" />
+<style>
+      @media (min-width: 992px) {
+      .dropdown-menu > .dropend:hover > .dropdown-menu {
+        display: block;
+      }
+      .dropdown-menu > .dropend:hover > a.dropdown-toggle {
+        background-color: var(--bs-dropdown-link-hover-bg);
+      }
+    }
+.sidebar{
+  position: fixed;
+  top: 0;
+  left: -250px;              
+  width: 250px;
+  height: 100%;
+  background: #e9f5ff;
+  color: #106694;
+  padding: 20px 20px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transition: left .3s ease; 
+  z-index: 1000;
+  box-shadow: 2px 0 12px rgba(0,0,0,.15);
+}
+
+.sidebar.open{ left: 0; }
+
+.sidebar .toggle-btn{
+  position: absolute;
+  top: 50px;
+  right: -64px;              
+  z-index: 1100;
+  border-radius: 50px;
+  font-weight: 600;
+  padding: 10px 16px;
+  transition: transform .3s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,.2);
+}
+
+.sidebar.open .toggle-btn{
+  transform: translateX(0);
+}
+
+.sidebar a{
+  display: block;
+  width: 100%;
+  margin: 8px 0;
+  color: #106694;
+  text-decoration: none;
+  transition: .3s;
+}
+.sidebar a:hover{
+  color: aquamarine;
+  background: #0d6efd;
+  padding-left: 10px;
+  border-radius: 5px;
+}
+
+#content.shift{
+  margin-left: 250px;
+  transition: margin-left .3s ease;
+}  
+</style>
+</head>
+
+<body>
+  <header class="sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-5 py-2" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><i class="bi bi-globe-americas"> Quelli del Sud </i></a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                    aria-controls="navbarNavDropdown" aria-expanded="true" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/"><i class="bi bi-house"> Home </i></a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/chi_siamo"><i class="bi bi-fingerprint"> Chi siamo </i></a>
+                    </li>
+                    <button class="navbar-toggler" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle nav">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+                        <ul class="navbar-nav">
+
+                            <!-- DROPDOWN PRINCIPALE -->
+                            <li class="nav-item dropdown" data-bs-auto-close="outside">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false"><i class="bi bi-collection-fill"> Lista Corsi </i></a>
+                                <ul class="dropdown-menu">
+                                    <!-- Submenu FED (apre a destra) -->
+                                    {% for category in categories %}
+                                    <li class="dropend">
+                                        <a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">{{category}}</a>
+                                        <ul class="dropdown-menu">
+                                            {% for course in courses %}
+
+                                            {% if course['categoria'] == category %}
+                                            <li><a class="dropdown-item" href="/corsi">{{course['corso']}}</a></li>
+                                            {% endif %}
+
+                                            {% endfor %}
+                                        </ul>
+                                    </li>
+                                     {% endfor %}
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/register"><i class="bi bi-person-fill-add"> Registrati </i></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/login" data-bs-toggle="modal" data-bs-target="#loginModal"><i class="bi bi-box-arrow-in-left"> Login </i></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/contatti"> <i class="bi bi-envelope-at-fill"> Contatti </i></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"> <i class="bi bi-credit-card-fill"> Paga qui </i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+  
+  {% block sidebar %}{% endblock %}
+
+  <main id="content" class="p-5">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="container align-items-center justify-content-between fw-bold d-none d-lg-flex mb-5">
+    <span> &copy; <i class="bi bi-globe-americas"> Quelli del Sud </i> - 2025 |</span>
+    <span> P.IVA 1234567890 |</span>
+    <span> Via dal Sud - 00100 - Roma |</span>
+    <span> Capitale sociale: 200000000€ |</span>
+    <span> Capitale sociale (umano): +&#8734;</span>
+    <!--Uso lo span perchè il p ha di default del margin bottom-->
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        <i class="bi bi-cookie"></i> Cookies
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+         aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-info-subtle">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Gestisci cookies</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body bg-light-subtle">
+                    <i class="bi bi-cookie"></i>This website allows cookies to ensure you get the best experience on our
+                    website
+                </div>
+                <div class="modal-footer bg-info-subtle">
+                    <button type="button" class="btn btn-light rounded-4" data-bs-dismiss="modal">Accetta cookies</button>
+                    <button type="button" class="btn btn-dark rounded-4">Rifiuta cookies</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
