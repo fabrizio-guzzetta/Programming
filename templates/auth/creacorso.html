@@ -8,13 +8,13 @@
 <main>
     <form action="/createcourse" method="POST">
         <label for="corso"> Nome del corso nuovo: </label> 
-            <input type="text" class="form-control d-none" placeholder="Nome del corso nuovo" aria-label="Nome del corso nuovo">
+            <input type="text" class="form-control d-none" placeholder="Nome del corso nuovo" aria-label="Nome del corso nuovo" name="corso">
         <label for="categoria"> Categoria del corso: </label> 
-            <input type="text" class="form-control d-none" placeholder="Categoria" aria-label="Categoria">
+            <input type="text" class="form-control d-none" placeholder="Categoria" aria-label="Categoria" name="categoria">
         <label for="number_participants"> Numero partecipanti: </label> 
-            <input type="text" class="form-control d-none" placeholder="Partecipanti" aria-label="Partecipanti">
-        <label for="descrizione"> Descrizione: </label>
-            <input type="text" class="form-control" placeholder="ID corso nuovo" aria-label="ID corso nuovo" aria-describedby="button-addon2">
+            <input type="text" class="form-control d-none" placeholder="Partecipanti" aria-label="Partecipanti" name="number_participants">
+        <label for="descrizione"> Descrizione del corso: </label>
+            <input type="text" class="form-control" placeholder="Descrizione nuovo" aria-label="Descrizione" aria-describedby="button-addon2" nome="descrizione">
         <button class="btn btn-outline-secondary bg-info text-warning"  id="button-addon2">Invia</button>
         <button type="reset" class="btn btn-outline-secondary bg-info text-warning"  id="button-addon2">Cancella</button>
     </form>
