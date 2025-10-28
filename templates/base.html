@@ -29,11 +29,11 @@
                 <ul class="navbar-nav">
 
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/"><i class="bi bi-house"> Home </i></a>
+                        <a class="nav-link {% if request.endpoint == 'home' %}active{% endif %}" aria-current="page" href="/"><i class="bi bi-house"> Home </i></a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="/chi_siamo"><i class="bi bi-fingerprint"> Chi siamo </i></a>
+                        <a class="nav-link {% if request.endpoint == 'chi_siamo' %}active{% endif %}" href="/chi_siamo"><i class="bi bi-fingerprint"> Chi siamo </i></a>
                     </li>
                     <button class="navbar-toggler" type="button"
                             data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
@@ -46,7 +46,7 @@
 
                             <!-- DROPDOWN PRINCIPALE -->
                             <li class="nav-item dropdown" data-bs-auto-close="outside">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false"><i class="bi bi-collection-fill"> Lista Corsi </i></a>
+                                <a class="nav-link {% if request.endpoint == 'pagina_corsi' %}active{% endif %} dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false"><i class="bi bi-collection-fill"> Lista Corsi </i></a>
                                 <ul class="dropdown-menu">
                                     <!-- Submenu FED (apre a destra) -->
                                     {% for category in categories %}
@@ -66,16 +66,16 @@
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/register"><i class="bi bi-person-fill-add"> Registrati </i></a>
+                                <a class="nav-link {% if request.endpoint == 'register' %}active{% endif %}" href="/register"><i class="bi bi-person-fill-add"> Registrati </i></a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="/login" data-bs-toggle="modal" data-bs-target="#loginModal"><i class="bi bi-box-arrow-in-left"> Login </i></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/contatti"> <i class="bi bi-envelope-at-fill"> Contatti </i></a>
+                                <a class="nav-link {% if request.endpoint == 'contatti' %}active{% endif %}" href="/contatti"> <i class="bi bi-envelope-at-fill"> Contatti </i></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#"> <i class="bi bi-credit-card-fill"> Paga qui </i></a>
+                                <a class="nav-link {% if request.endpoint == '#' %}active{% endif %}" href="#"> <i class="bi bi-credit-card-fill"> Paga qui </i></a>
                             </li>
                         </ul>
                     </div>
