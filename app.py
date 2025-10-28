@@ -66,7 +66,7 @@ def create():
         courses = cursor.fetchall()
         cursor.close()
         for course in courses:
-            if not courses['id']:
+            if not course['id']:
                 cursor = connect.cursor(dictionary=True)
                 cursor.execute("""INSERT INTO courses_db(corso, categoria, number_participants, descrizione)VALUES(%s, %s, %s, %s)""", [request.form['corso'], request.form['categoria'], request.form['number_participants'], request.form['descrizione']])
                 connect.commit()
@@ -79,22 +79,31 @@ def create():
 
 @app.route("/deletecourse", methods=["POST", "GET"])
 def delete():
+    
     if request.method == "POST":
-        cursor = connect.cursor(dictionary=True)
-        cursor.execute("SELECT * FROM courses_db")
-        courses = cursor.fetchall()
-        cursor.close()        
-        for request.form['id'] in courses:
-            if not request.form['id']:
-                return render_template("auth/eliminacorso.html", message="Corso da eliminare non trovato")
-            else:
-                curs_id= request.form['id']
-                cursor = connect.cursor(dictionary=True)
-                cursor.execute("""DELETE FROM courses_db WHERE id = %s""",[curs_id])
-                connect.commit()
-                cursor.close()
-                return render_template("corsi_utente.html")
+        curs_id = request.form.get('id')
 
+        if not curs_id:
+            flash("ID corso non fornito")
+            return redirect(url_for("eliminacorso"))
+
+        cursor = connect.cursor(dictionary=True)
+        
+        cursor.execute("SELECT * FROM courses_db WHERE id = %s", [curs_id])
+        course = cursor.fetchone()
+        
+        if not course:
+            cursor.close()
+            flash("Corso da eliminare non trovato")
+            return redirect(url_for("eliminacorso"))
+        
+        cursor.execute("DELETE FROM courses_db WHERE id = %s", [curs_id])
+        connect.commit()
+        cursor.close()
+        flash("Corso eliminato con successo")
+        return render_template("corsi_utente.html")
+    
+    return render_template("auth/eliminacorso.html")
 
 @app.route("/login/admin/<username>", methods=["POST", "GET"])
 def dashboard_admin(username):
