@@ -80,10 +80,14 @@ def create():
 @app.route("/deletecourse", methods=["POST", "GET"])
 def delete():
     if request.method == "POST":
+        cursor = connect.cursor(dictionary=True)
+        cursor.execute("SELECT * FROM courses_db")
+        courses = cursor.fetchall()
+        cursor.close()        
         for request.form['id'] in courses:
             if not request.form['id']:
-                return render_template("eliminacorso.html", message="Corso da eliminare non trovato")
-            else: 
+                return render_template("auth/eliminacorso.html", message="Corso da eliminare non trovato")
+            else:
                 curs_id= request.form['id']
                 cursor = connect.cursor(dictionary=True)
                 cursor.execute("""DELETE FROM courses_db WHERE id = %s""",[curs_id])
