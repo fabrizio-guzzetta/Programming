@@ -1,0 +1,26 @@
+{% extends "base_sidebar.html" %}
+
+{% block title%} Crea Corso {{username_admin}}{% endblock %}
+
+{% block sidebar %}{% endblock %}
+
+{% block content%}
+<main>
+<section class="container-fluid bg-info-subtle py-5">
+  <div class="container py-5">
+    <div class="row align-items-center">
+      <div class="col-md-6 mb-4 mb-md-0">
+        <img src="static/assets/media/class.jpg" alt="Corsi nuovi" class="w-100 rounded-3 shadow">
+      </div>
+      <div class="col-md-6 ps-md-5">
+            <span class="badge bg-info text-warning mb-3 px-3 py-2 fs-6"><h1 class="fw-xl"> Elimina un corso obsoleto o deprecato </h1></span>
+        <form action="/createcourse" method="POST">
+            <label for="id"> ID del corso da eliminare: </label> 
+                <input type="number" class="form-control d-flex-row" placeholder="ID del corso da eliminare" aria-label="ID del corso da eliminare" aria-describedby="button-addon2" name="id">
+            <button class="btn btn-outline-secondary bg-info text-warning"  id="button-addon2">Invia</button>
+            <button type="reset" class="btn btn-outline-secondary bg-info text-warning"  id="button-addon2">Cancella</button>
+        </form>
+    </div>
+</section>
+</main>
+{% endblock %}
