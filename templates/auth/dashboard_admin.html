@@ -57,7 +57,7 @@ function toggleSidebar(type) {
 {% endblock %}
 
 {%block content%}
-<main>
+
     <div class="d-flex-lg-row justify-content-center">
         <div class="p-5 me-3" 
             style="background-image: url('/static/assets/media/prof.jpg');
@@ -80,6 +80,28 @@ function toggleSidebar(type) {
             <p> Hai anche una pagina dove prendere appunti, note, progetti e messaggi </p>
             </p>
     </div>
+
+    <div class="container-fluid">
+    <div class="row">
+        <div class="col-6">
+            <div class="input-group mb-3">
+                <input type="file" class="form-control" id="inputGroupFile02">
+                <label class="input-group-text" for="inputGroupFile02">
+                    <i class="bi bi-upload"></i>
+                </label>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" value="document.pdf" readonly>
+                <a href="/path/to/file.pdf" download class="btn btn-outline-secondary">
+                    <i class="bi bi-download"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
     <div>
         <section class="formRow mb-3 d-flex justify-content-center align content-center p-0 mt-0">
                 <label for="genere">VisualizzazioneCorso richiesto: </label>
@@ -99,8 +121,13 @@ function toggleSidebar(type) {
                 </select>   
         </section>
     </div>
-</main>
-<form action = "#" method = "post" class="d-flex justify-content-center mt-5"> 
-    <div class="text-info fs-6"> <p>Il tuo nome è {{username}}, il tuo cognome è {{cognome}}. Le tue credenziali di login sono {{email}} e {{password}} </p></div>
-</form>
+{% endblock %}
+
+{% block credentials %}
+<div class="container-fluid py-3 text-center">
+    <p class="text-info fs-6 mb-0">
+        Il tuo nome è {{username}}, il tuo cognome è {{cognome}}. 
+        Le tue credenziali di login sono {{email}} e {{password}}
+    </p>
+</div>
 {% endblock %}

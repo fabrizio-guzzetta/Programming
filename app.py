@@ -18,6 +18,53 @@ def layout_data():
     }
     
 
+@app.route("/iscriviti/<int:corso_id>", methods=["POST"])
+def iscriviti_corso(corso_id):
+    utente_id = session['user_id']  
+    ruolo = request.form.get('ruolo', 'UTENTE')  
+    
+    cursor = connect.cursor(dictionary=True)
+    
+    cursor.execute("""
+        SELECT COUNT(*) as num_studenti 
+        FROM iscrizioni_db 
+        WHERE corso_id = %s AND ruolo = 'STUDENTE'
+    """, [corso_id])
+    
+    num_studenti = cursor.fetchone()['num_studenti']
+    
+    if ruolo == 'STUDENTE' and num_studenti >= 20:
+        flash("Corso pieno! Massimo 20 studenti.")
+        cursor.close()
+        return redirect(url_for('corsi'))
+    
+    if ruolo == 'ADMIN':
+        cursor.execute("""
+            SELECT COUNT(*) as num_admin 
+            FROM iscrizioni_db 
+            WHERE corso_id = %s AND ruolo = 'ADMIN'
+        """, [corso_id])
+        
+        if cursor.fetchone()['num_admin'] >= 1:
+            flash("Questo corso ha già un professore!")
+            cursor.close()
+            return redirect(url_for('corsi'))
+    
+    try:
+        cursor.execute("""
+            INSERT INTO iscrizioni_db (utente_id, corso_id, ruolo) 
+            VALUES (%s, %s, %s)
+        """, [utente_id, corso_id, ruolo])
+        connect.commit()
+        flash("Iscrizione completata!")
+    except:
+        flash("Errore: sei già iscritto a questo corso!")
+    finally:
+        cursor.close()
+    
+    return redirect(url_for('dashboard'))
+
+
 @app.route("/")
 def index():
     return render_template("index.html")

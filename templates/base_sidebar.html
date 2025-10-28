@@ -77,7 +77,7 @@
 </style>
 </head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
   <header class="sticky-top">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-5 py-2" data-bs-theme="dark">
         <div class="container-fluid">
@@ -151,10 +151,12 @@
   
   {% block sidebar %}{% endblock %}
 
-  <main id="content" class="p-5">
+  <main id="content" class="p-5 flex-grow-1">
     {% block content %}{% endblock %}
   </main>
+{% block credentials %}
 
+{% endblock %}
   <footer class="container align-items-center justify-content-between fw-bold d-none d-lg-flex mb-5">
     <span> &copy; <i class="bi bi-globe-americas"> Quelli del Sud </i> - 2025 |</span>
     <span> P.IVA 1234567890 |</span>

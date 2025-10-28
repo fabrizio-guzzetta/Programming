@@ -3,7 +3,6 @@
 {% block title%} Dashboard {{username}}{% endblock %}
 
 {% block sidebar %}
-
 <div class="sidebar" id="sidebar_utente" aria-hidden="true">
   <button class="toggle-btn btn btn-info text-warning" 
           id="toggleSidebarBtn"
@@ -22,11 +21,12 @@
   <a href='#'><i class="bi bi-person-lines-fill"> Progressi </i><a>
   <a href="#"><i class="bi bi-chat-square-quote-fill"> Chat </i></a>
   <a href="#"><i class="bi bi-journal"> Appunti </i></a>
+  <a href="#"><i class="bi bi-bullseye"> Job applications </i></a> 
   <a href="#"><i class="bi bi-person-bounding-box"> Profilo </i></a>
   <a href="/"><i class="bi bi-box-arrow-in-right"> Logout </i></a>
 
 <!--<div class="m-3">
-    Qui si devono mettere dinamicamente le barre di avanzamento del corso in base ai login (per. esempio se il corso è 180 gg, si deve loggare per 180 gg max e il corso è valido fino a un 20% di assenze) e la barra di avanzamento per valutazioni
+    Qui si devono mettere dinamicamente le barre di avanzamento del corso in base ai login (per. esempio se il corso Ã¨ 180 gg, si deve loggare per 180 gg max e il corso Ã¨ valido fino a un 20% di assenze) e la barra di avanzamento per valutazioni
 </div>-->
 </div>
 
@@ -53,59 +53,89 @@ function toggleSidebar(type) {
 
 {% endblock %}
 
-{%block content%}
-<main>
-    <div class="d-flex-lg-row justify-content-center">
-        <div class="p-5 me-3" 
-     style="background-image: url('/static/assets/media/robot.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;">
-            <div class="text-start text-light bg-light bg-opacity-50 p-4 rounded-3">
+{% block content %}
+
+<div class="d-flex-lg-row justify-content-center">
+    <div class="p-5 me-3" 
+         style="background-image: url('/static/assets/media/robot.jpg');
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;">
+        <div class="text-start text-light bg-light bg-opacity-50 p-4 rounded-3">
             <div class="d-flex flex-row align-items-baseline justify-content-start">
-            <h1 class="fw-bold mt-3 text-info-emphasis me-2">Benvenuto,</h1>
-            <h1 class="text-info">{{username}}!</h1>
-        </div>
-    <h2 class="text-info-emphasis mt-3">Questa è la tua dashboard.</h2>
-  </div> 
-        </div>    
-        <div class=" d-flex-lg-row justify-item-center align-text-center p-5 me-3 text-info">
-            <p class="text-primary justify-text-center"> Qui puoi scegliere i corsi a cui iscriverti, controllare i corsi che segui, controllare i tuoi progressi (in %), i pagamenti effettuati e da effettuare, e molto altro.</p> 
+                <h1 class="fw-bold mt-3 text-info-emphasis me-2">Benvenuto,</h1>
+                <h1 class="text-info">{{username}}!</h1>
+            </div>
+            <h2 class="text-info-emphasis mt-3">Questa è la tua dashboard.</h2>
+        </div> 
+    </div>    
     
-            <p class="text-primary justify-text-end"> Hai una pagina dove prendere appunti, note, progetti e job applications </p>
+    <div class="d-flex-lg-row justify-item-center align-text-center p-5 me-3 text-info">
+        <p class="text-primary justify-text-center">Qui puoi scegliere i corsi a cui iscriverti, controllare i corsi che segui, controllare i tuoi progressi (in %), i pagamenti effettuati e da effettuare, e molto altro.</p> 
+        <p class="text-primary justify-text-end">Hai una pagina dove prendere appunti, note, progetti e job applications</p>
     </div>
-    <div class="container-fluid">
-        <div class="input-group mb-3 d-flex-column col-2">
-            <input type="file" class="form-control" id="inputGroupFile02">
-            <label class="input-group-text" for="inputGroupFile02"><i class="bi bi-download">Upload</i></label>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-6">
+            <div class="input-group mb-3">
+                <input type="file" class="form-control" id="inputGroupFile02">
+                <label class="input-group-text" for="inputGroupFile02">
+                    <i class="bi bi-upload"></i>
+                </label>
+            </div>
         </div>
-        <div class="input-group mb-3 d-flex column col-2">
-            <input type="text" class="form-control" value="document.pdf" readonly>
-            <a href="#" download class="btn btn-outline-secondary">
-            <i class="bi bi-download">Download</i></a>
+        <div class="col-6">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" value="document.pdf" readonly>
+                <a href="/path/to/file.pdf" download class="btn btn-outline-secondary">
+                    <i class="bi bi-download"></i>
+                </a>
+            </div>
         </div>
     </div>
-    <div>
-        <section class="formRow mb-3 d-flex justify-content-center align content-center p-0 mt-0">
-                <label for="genere">Corso richiesto: </label>
-                <select name="Elenco corsi" id="corso">
-                    <option value="">Seleziona il corso ufficiale</option>
-                    {%for course in courses%}
-                    {% if course['categoria'].upper() == 'FED'%}
-                    <option value="{{course['id']}}">{{course['corso']}} </option>
-                    {% endif %}
-                    {% if course['categoria'].upper() == 'BED'%}
-                    <option value="{{course['id']}}">{{course['corso']}} </option>
-                    {% endif %}
-                    {% if course['categoria'].upper() == 'OTHER'%}
-                    <option value="{{course['id']}}">{{course['corso']}} </option>
-                    {% endif %}
-                    {% endfor %}
-                </select>   
-        </section>
-    </div>
-</main>
-<form action = "#" method = "post" class="d-flex justify-content-center mt-5"> 
-    <div class="text-info fs-6"> <p>Il tuo nome è {{username}}, il tuo cognome è {{cognome}}. Le tue credenziali di login sono {{email}} e {{password}} </p></div>
-</form>
+</div>
+
+<div>
+    <!--<section class="formRow mb-3 d-flex justify-content-center align content-center p-0 mt-0">
+        <label for="genere">Corso richiesto: </label>
+        <select name="Elenco corsi" id="corso">
+            <option value="">Seleziona il corso ufficiale</option>
+            {% for course in courses %}
+                {% if course['categoria'].upper() == 'FED' %}
+                <option value="{{course['id']}}">{{course['corso']}}</option>
+                {% endif %}
+                {% if course['categoria'].upper() == 'BED' %}
+                <option value="{{course['id']}}">{{course['corso']}}</option>
+                {% endif %}
+                {% if course['categoria'].upper() == 'OTHER' %}
+                <option value="{{course['id']}}">{{course['corso']}}</option>
+                {% endif %}
+            {% endfor %}
+        </select>   
+    </section>-->
+    <section class="formRow mb-3 d-flex justify-content-center align-content-center p-0 mt-0">
+    <form action="/iscriviti" method="POST" class="d-flex gap-2 align-items-center">
+        <label for="corso">Corso richiesto:</label>
+        <select name="corso_id" id="corso" class="form-select" required>
+            <option value="">Seleziona il corso ufficiale</option>
+            {% for course in courses %}
+                <option value="{{course['id']}}">{{course['corso']}} ({{course['categoria']}})</option>
+            {% endfor %}
+        </select>
+        <button type="submit" class="btn btn-primary">Iscriviti</button>
+    </form>
+</section>
+</div>
+{% endblock %}
+
+<!-- SPOSTA IL MESSAGGIO QUI, IN UN NUOVO BLOCCO -->
+{% block credentials %}
+<div class="container-fluid py-3 text-center">
+    <p class="text-info fs-6 mb-0">
+        Il tuo nome è {{username}}, il tuo cognome è {{cognome}}. 
+        Le tue credenziali di login sono {{email}} e {{password}}
+    </p>
+</div>
 {% endblock %}
