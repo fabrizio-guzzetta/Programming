@@ -58,25 +58,27 @@ def dashboard(username):
     return render_template("auth/dashboard.html", message=f"Benvenuto{username}: complimenti,registrazione avvenuta con successo", username=username, cognome=session['cognome'], email=session['email'], password=session['password'], courses=courses)
 
 
-@app.route("/createcourse", methods=["POST"])
-def create(username):
-    cursor = connect.cursor(dictionary=True)
-    cursor.execute("SELECT * FROM courses_db")
-    courses = cursor.fetchall()
-    cursor.close()
-    for course in courses:
-        if not courses[0]['corso']:   
-            cursor = connect.cursor(dictionary=True)
-            cursor.execute("""INSERT INTO courses_db(corso, categoria, number_participants, descrizione)VALUES(%s, %s, %s, %s)""", [request.form['corso'], request.form['categoria'], request.form['number_participants'], request.form['descrizione']])
-            return render_template("corsi_utente.html")
-        else:
-            return redirect("/createcourse", message= "Corso già esistente")
-    connect.commit()
-    cursor.close()
-    return render_template("crea_corsi.html")
+@app.route("/createcourse", methods=["POST", "GET"])
+def create():
+    if request.method == "POST":
+        cursor = connect.cursor(dictionary=True)
+        cursor.execute("SELECT * FROM courses_db")
+        courses = cursor.fetchall()
+        cursor.close()
+        for course in courses:
+            if not courses['id']:
+                cursor = connect.cursor(dictionary=True)
+                cursor.execute("""INSERT INTO courses_db(corso, categoria, number_participants, descrizione)VALUES(%s, %s, %s, %s)""", [request.form['corso'], request.form['categoria'], request.form['number_participants'], request.form['descrizione']])
+                connect.commit()
+                cursor.close()
+                return render_template("corsi_utente.html")
+            else:
+                return render_template("auth/creacorso.html", message="Corso già esistente")
+    return render_template("auth/creacorso.html")
+
 
 @app.route("/deletecourse", methods=["POST", "GET"])
-def delete(username):
+def delete():
     if request.method == "POST":
         curs_id= request.form['id']
         cursor = connect.cursor(dictionary=True)
