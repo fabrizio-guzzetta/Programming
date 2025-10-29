@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, session, request, flash
+from flask import Flask, render_template, redirect, session, request, flash, url_for
 from connection import connect
 import json
 
@@ -109,18 +109,32 @@ def dashboard(username):
 def create():
     if request.method == "POST":
         cursor = connect.cursor(dictionary=True)
-        cursor.execute("SELECT * FROM courses_db")
-        courses = cursor.fetchall()
-        cursor.close()
-        for course in courses:
-            if not course['id']:
-                cursor = connect.cursor(dictionary=True)
-                cursor.execute("""INSERT INTO courses_db(corso, categoria, number_participants, descrizione)VALUES(%s, %s, %s, %s)""", [request.form['corso'], request.form['categoria'], request.form['number_participants'], request.form['descrizione']])
-                connect.commit()
-                cursor.close()
-                return render_template("corsi_utente.html")
-            else:
-                return render_template("auth/creacorso.html", message="Corso già esistente")
+        
+        # Verifica se il corso esiste già nel database
+        cursor.execute("SELECT * FROM courses_db WHERE corso = %s", [request.form['corso']])
+        corso_esistente = cursor.fetchone()
+        
+        if corso_esistente:
+            # Il corso esiste già
+            cursor.close()
+            return render_template("auth/creacorso.html", message="Corso già esistente")
+        else:
+            # Il corso non esiste, inseriscilo
+            cursor.execute("""
+                INSERT INTO courses_db(corso, categoria, descrizione, durata_giorni, prezzo)
+                VALUES(%s, %s, %s, %s, %s)
+            """, [
+                request.form['corso'], 
+                request.form['categoria'], 
+                request.form['descrizione'], 
+                request.form['durata_giorni'], 
+                request.form['prezzo']
+            ])
+            connect.commit()
+            cursor.close()
+            return render_template("corsi_utente.html", message="Corso creato con successo")
+            
+    # GET request - mostra il form vuoto
     return render_template("auth/creacorso.html")
 
 
@@ -173,12 +187,13 @@ def dashboard_admin(username):
         return redirect("/")
 
 
-@app.route("/login", methods=["POST"])
+@app.route("/login", methods=["POST", "GET"])
 def login():
 
     for element in request.form:
         if not request.form[element]:
-            return render_template("index.html", message=f"Il campo {element} è richiesto")
+            flash(f"Il campo {element} è richiesto","error")
+            return render_template('index.html')
 
     session['email'] = request.form['email']
     session['password'] = request.form['password']

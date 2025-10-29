@@ -1,4 +1,4 @@
-{% extends "base_sidebar.html" %}
+{% extends "base.html" %}
 
 {% block title%} Crea Corso {{username_admin}}{% endblock %}
 
@@ -21,14 +21,32 @@
             <label for="categoria"> Categoria del corso: </label> 
                 <input type="text" class="form-control d-flex-row" placeholder="Categoria" aria-label="Categoria" aria-describedby="button-addon2" name="categoria">
             <br>
-                <label for="number_participants"> Numero partecipanti: </label> 
-                <input type="text" class="form-control d-flex-row" placeholder="Partecipanti" aria-label="Partecipanti"  aria-describedby="button-addon2" name="number_participants">
-            <br>
             <label for="descrizione"> Descrizione del corso: </label>
                 <input type="text" class="form-control d-flex-row" placeholder="Descrizione nuovo corso" aria-label="Descrizione" aria-describedby="button-addon2" nome="descrizione">
             <br>
+            <label for="durata_giorni"> Durata del corso: </label> 
+                <input type="number" class="form-control d-flex-row" placeholder="Durata in giorni" aria-label="durata del corso"  aria-describedby="button-addon2" name="number_participants">
+            <br>
             <button class="btn btn-outline-secondary bg-info text-warning"  id="button-addon2">Invia</button>
             <button type="reset" class="btn btn-outline-secondary bg-info text-warning"  id="button-addon2">Cancella</button>
+            <br>
+            <section class="container-fluid">
+                    <div class="row align-items-center">
+                        <section class="formRow mb-3 d-flex justify-content-center p-0">
+                            <label for="genere">Prezzo:</label>
+                            <select class="form-control" name="prezzario" required id="prezzario">
+                                <option value="149.99">149.99</option>
+                                <option value="199.99">199.99</option>
+                                <option value="299.99">299.99</option>
+                                <option value="349.99">349.99</option>
+                                <option value="399.99">
+                                    399.99
+                                </option>
+                                <option value="449.99">449.99</option>
+                                <option value="499.99">499.99</option>
+                                <option value="Personalizzabile">Personalizzabile</option>
+                            </select>
+                        </section>
         </form>
     </div>
 </section>

@@ -1,4 +1,4 @@
-{% extends "base_sidebar.html" %}
+{% extends "base.html" %}
 
 {% block title%} Dashboard_admin {{username_admin}}{% endblock %}
 
@@ -21,7 +21,7 @@
   <a href="#"><i class="bi bi-cloud-download-fill"> Scarica lavori studenti </i></a>
   <a href="#"><i class="bi bi-file-earmark-plus-fill"> Aggiungi valutazioni </i></a>
   <a href="#"><i class="bi bi-gear-wide-connected"> Modifica valutazioni </i></a>
-  <a href="#"> <i class="bi bi-file-bar-graph-fill"> Visualizza barre progresso per studente o per corso </i></a>
+  <a href="#"> <i class="bi bi-file-bar-graph-fill"> Visualizza progressi per studente o per corso </i></a>
   <a href="#"><i class="bi bi-megaphone-fill"> Annunci </i></a>
   <a href="#"><i class="bi bi-chat-square-quote-fill"> Chat </i></a>
   <a href="#"><i class="bi bi-cloud-upload"> Upload materiale didattico </i></a>
@@ -104,7 +104,7 @@ function toggleSidebar(type) {
 
     <div>
         <section class="formRow mb-3 d-flex justify-content-center align content-center p-0 mt-0">
-                <label for="genere">VisualizzazioneCorso richiesto: </label>
+                <label for="genere" class="me-3">Visualizzazione Corso richiesto: </label>
                 <select name="Elenco corsi" id="corso">
                     <option value="">Seleziona il corso da visualizzare</option>
                     {%for course in courses%}
